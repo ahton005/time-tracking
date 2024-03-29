@@ -1,22 +1,28 @@
 package ru.zuablov.time.tracking.entity;
 
 import jakarta.persistence.Entity;
+import jakarta.persistence.GeneratedValue;
+import jakarta.persistence.GenerationType;
 import jakarta.persistence.Id;
+import jakarta.persistence.Table;
 import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
-import org.springframework.stereotype.Repository;
-
-import java.lang.annotation.Retention;
 
 @Entity
-@Repository
 @Data
 @AllArgsConstructor
 @NoArgsConstructor
+@Table(name = "time_track")
 public class TimeTrackEntity {
     @Id
-    Long id;
-    String methodName;
-    String execTime;
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
+    private Long id;
+    private String methodName;
+    private long execTime;
+
+    public TimeTrackEntity(String methodName, long execTime) {
+        this.execTime = execTime;
+        this.methodName = methodName;
+    }
 }
