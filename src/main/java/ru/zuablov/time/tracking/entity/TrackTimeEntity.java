@@ -9,20 +9,29 @@ import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
 
+import java.math.BigDecimal;
+
+/**
+ * Сущность для хранения статистики в БД.
+ */
 @Entity
 @Data
 @AllArgsConstructor
 @NoArgsConstructor
 @Table(name = "time_track")
-public class TimeTrackEntity {
+public class TrackTimeEntity {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
     private String methodName;
-    private long execTime;
+    private BigDecimal execTime;
+    private String status;
+    private String groupMethod;
 
-    public TimeTrackEntity(String methodName, long execTime) {
+    public TrackTimeEntity(String methodName, BigDecimal execTime, String status, String groupMethod) {
         this.execTime = execTime;
         this.methodName = methodName;
+        this.status = status;
+        this.groupMethod = groupMethod;
     }
 }
